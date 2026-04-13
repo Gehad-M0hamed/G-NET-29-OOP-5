@@ -86,9 +86,47 @@ namespace G_NET_29_OOP_5
 
         #endregion
 
+        #region Part 02:
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-        }
+        
+                Cinema myCinema = new Cinema();
+                myCinema.Open();
+
+                var t1 = new StandardTicket { MovieName = "Inception", Seat = "A5", Price = 80 };
+                var t2 = new VipTicket { MovieName = "Avengers", Seat = "B1", Price = 200, HasLounge = true, LoungeFee = 50 };
+                var t3 = new ImaxTicket { MovieName = "Dune", Seat = "C10", Price = 130, Is3D = true };
+
+                t1.Book();
+                t2.Book();
+                t3.Book();
+
+                myCinema.Tickets.Add(t1);
+                myCinema.Tickets.Add(t2);
+                myCinema.Tickets.Add(t3);
+
+                myCinema.PrintAll();
+
+                Console.WriteLine("\n--- Clone Test ---");
+                Console.Write("Original : "); t2.PrintDetails(2);
+
+                VipTicket t4 = (VipTicket)t2.Clone();
+                t4.MovieName = "Interstellar";
+                t4.IsBooked = false;
+
+                Console.Write("Clone    : "); t4.PrintDetails(4);
+
+                Console.WriteLine("\n--- After Cancellation ---");
+                t1.Cancel();
+                t1.PrintDetails(1);
+
+                IPrintable[] ticketsArray = { t1, t2, t3 };
+                BookingHelper.PrintAll(ticketsArray);
+
+                myCinema.Close();
+            
+
+    }
+        #endregion
     }
 }
