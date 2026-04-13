@@ -1,4 +1,8 @@
-﻿namespace G_NET_29_OOP_5
+﻿using System;
+using System.Runtime.Intrinsics.X86;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace G_NET_29_OOP_5
 {
     internal class Program
     {
@@ -19,17 +23,17 @@
         #region Q2:
         //a) Naming Conflict, IEnglishSpeaker, IArabicSpeaker have Greet() 
         //    doing  2 interfaces  at same time ,,leads to print Hello / Ahlan.
-           
+
         //b)Explicit Interface Implementation:
         //     Right code:
         //    class Translator : IEnglishSpeaker, IArabicSpeaker
         //{
-            
+
         //    void IEnglishSpeaker.Greet()
         //    {
         //        Console.WriteLine("Hello");
         //    }
-            
+
         //    void IArabicSpeaker.Greet()
         //    {
         //        Console.WriteLine("Ahlan");
@@ -43,6 +47,29 @@
         //    IArabicSpeaker arabic = (IArabicSpeaker)new Translator();
         //arabic.Greet(); // print Ahlan
 
+        #endregion
+
+        #region Q3:
+       // * shallow copy:
+       //    copies the obj but copies references 
+       //     for reference-type fields.
+       //     When would you use:
+       //     object is immutable.
+       //     no nested reference state.
+       //     performance the first Priority.
+       //     -------------------------------------
+       // *deep copy:
+       //    copies the obj and all nested objects, 
+       //     creating fully independent duplicates.
+       //    When would you use:
+       //    when we need to completely isolate obj from each other,
+       //    so  we ensure that modifications in  new version will not affect the original.
+       //-------------------------------------------
+       //* Data Corruption 
+       //   original and copy share the same reference to internal objects
+       //   any modification made by object 2 
+       //     data auto change at abj 1
+       //     that leads to small errors we cant determine it easily.
         #endregion
 
         static void Main(string[] args)
